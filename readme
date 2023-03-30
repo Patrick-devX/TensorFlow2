@@ -16,4 +16,4 @@ an SGDClassifier with the following hyperparameters: loss="perceptron", learning
 
 - Contrary to Logistic regression Classifiers, Perceptrons do not output a class probability; rather, they make predictions based on a hard threshold. This is the one reason
 to prefer Logistic Regression over Perceptrons
-<p style='color:red'>This is some red text.</p>
+
