@@ -1,5 +1,5 @@
 ############################
-# Book hands On Machine Learning with Scikit Leaarn, Keras and TensorFlow2
+# TensorFlow2
 
 # Chapter 10. Introduction to Artificial Neural Networks with Keras
 McCulloch and Pitts proposed a very simple model of the biological neuron, which later become known as an artificial neuron:
@@ -14,5 +14,6 @@ reinforces connections that help reduce the error, More specially, the Perceptro
 Scikit Learn prvides a Perceptron class that implements a single TLU (Threshold Logic Unit) network. In fact Scikit Learn's Perceptron class is equivalent to using
 an SGDClassifier with the following hyperparameters: loss="perceptron", learning_rate="constant" with no regularizations.
 
-Contrary to Logistic regression Classifiers, Perceptrons do not output a class probability; rather, they make predictions based on a hard threshold. This is the one reason
+- Contrary to Logistic regression Classifiers, Perceptrons do not output a class probability; rather, they make predictions based on a hard threshold. This is the one reason
 to prefer Logistic Regression over Perceptrons
+<p style='color:red'>This is some red text.</p>
