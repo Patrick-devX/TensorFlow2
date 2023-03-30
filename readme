@@ -1,0 +1,18 @@
+############################
+# Book hands On Machine Learning with Scikit Leaarn, Keras and TensorFlow2
+
+# Chapter 10. Introduction to Artificial Neural Networks with Keras
+McCulloch and Pitts proposed a very simple model of the biological neuron, which later become known as an artificial neuron:
+it has one or more binary (on/off) inputs and one binary output. The artificial neuron activates its output when more than a certain number of its inputs are active.
+
+The Perceptron is one of the simplest ANN architectures. It is based on a slightly different artificial neuron called a THRESHOLD LOGIC UNIT (TLU), or sometimes
+a LINEAR THRESHOLD UNIT(LTU). A Perceptron is simply composed of a single layer of TLU, which each TLU connected to all the inputs. When all the neurons in a layer are
+connected to every neuron in the previous layer, the layer is called fully connected layer , or a Dense layer.
+The Perceptrons are trained using a variant of this rule that takes into account the error made by the network when makes a prediction; the perceptron learning rule
+reinforces connections that help reduce the error, More specially, the Perceptron is fed one training instance time, and for each instance it makes its predictions
+
+Scikit Learn prvides a Perceptron class that implements a single TLU (Threshold Logic Unit) network. In fact Scikit Learn's Perceptron class is equivalent to using
+an SGDClassifier with the following hyperparameters: loss="perceptron", learning_rate="constant" with no regularizations.
+
+Contrary to Logistic regression Classifiers, Perceptrons do not output a class probability; rather, they make predictions based on a hard threshold. This is the one reason
+to prefer Logistic Regression over Perceptrons
