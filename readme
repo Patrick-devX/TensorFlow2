@@ -16,3 +16,31 @@ an SGDClassifier with the following hyperparameters: loss="perceptron", learning
 
 Contrary to Logistic regression Classifiers, Perceptrons do not output a class probability; rather, they make predictions based on a hard threshold. This is the one reason
 to prefer Logistic Regression over Perceptrons
+
+In their 1969 monograph Perceptrons, Marvin Minsky and Seymour Papert highlighted a number of serous weaknesses of Perceptrons---in particular, the fact that
+they are incapable of solving some trivial problems (e. g. the Exclusive Or(XOR)) classification problem. It turns that some of the limitations of the Perceptrons
+ can be eliminated by stacking multiple Perceptrons. The resulting ANN is called a Multilayer Perceptron (MLP). An MLP can solve the XOR Problem.
+
+ ## The Multilayer Perceptron and backpropagation
+ An MLP is composed of one (passthrough) input Layer, one or more Layers of TLU (Theshold Logic Unit), called hidden Layers and one final layer of TLUs called the output layer.
+ The signal flows only in one direction (from the inputs to the outputs), so this architechture is an example of feedfirward neural network (FNN)
+ When an ANN contains a deep stack of hidden layers, it is called a deep neural network (DNN).
+
+ MLPs are trained using the backpropagation training algorithm. In short ist the Gradient Descent.
+
+
+ Implementing MLPs with keras
+ Since 2016, other implementations have been released. You can now run Keras on Apache MXNET, Appele Core ML, JavaScript or TypeScript(to run Keras in a Web browser)
+
+ ########################################################################
+
+ Building an Image Classifier Using the Sequential API  imageClassifier1.py
+
+ * Flatten Layer: Convert each imput Image into 1D array
+ * High number of weights gives the model quite a lot of flexibility to fit the training data, but it also means that the model runs the risk of overfiting,
+  especially when you do not have a lot of training data
+ * sparse_categorical_crossentropy: loss because we have sparse labels (i.e., for each instance, there is just a target class index from 0 to 9 in this case)
+    If instead we had one target probability per class for each instance ( such as one-hot vectors, e.g, [0.,0.,1.,0.,0.,0.,0.,0.,0.,0.] to represent 3),
+    then we would need to use the categorical_crossentropy loss instead.
+ * If we are doing binary classification ( with one or more binary labels) , then we would use the sigmoid ( i.e. logistic) activation function in the output layer
+ instead of the softmax activation function, and we would use the binary_crossentropy
