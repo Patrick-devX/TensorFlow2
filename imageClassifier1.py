@@ -25,6 +25,8 @@ model.add(keras.layers.Dense(100, activation="relu"))
 model.add(keras.layers.Dense(10, activation="softmax"))
 model.summary()
 
+history = model.fit(x_train, y_train, epochs=30, validation_data=(x_valid, y_valid))
+
 # Get All parameters of layer
 
 model.layers

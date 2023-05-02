@@ -44,3 +44,26 @@ they are incapable of solving some trivial problems (e. g. the Exclusive Or(XOR)
     then we would need to use the categorical_crossentropy loss instead.
  * If we are doing binary classification ( with one or more binary labels) , then we would use the sigmoid ( i.e. logistic) activation function in the output layer
  instead of the softmax activation function, and we would use the binary_crossentropy
+
+ * Instead of passing a validation set using the validation_data argument, you could
+    set validation_split to the ratio of the training set that you want Keras to use for
+    validation. For example, validation_split=0.1 tells Keras to use the last 10% of
+    the data (before shuffling) for validation.
+
+ * Skewed data:
+
+This answer is not useful
+
+If you are talking about the regular case, where your network produces only one output, then your assumption is correct. In order to force your algorithm to treat every instance of class 1 as 50 instances of class 0 you have to:
+
+    Define a dictionary with your labels and their associated weights
+
+    class_weight = {0: 1.,
+                    1: 50.,
+                    2: 2.}
+    Feed the dictionary as a parameter:
+
+    model.fit(X_train, Y_train, nb_epoch=5, batch_size=32, class_weight=class_weight)
+
+EDIT: "treat every instance of class 1 as 50 instances of class 0" means that in your loss function you assign higher value to these instances.
+Hence, the loss becomes a weighted average, where the weight of each sample is specified by class_weight and its corresponding class.
