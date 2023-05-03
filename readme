@@ -51,9 +51,6 @@ they are incapable of solving some trivial problems (e. g. the Exclusive Or(XOR)
     the data (before shuffling) for validation.
 
  * Skewed data:
-
-This answer is not useful
-
 If you are talking about the regular case, where your network produces only one output, then your assumption is correct. In order to force your algorithm to treat every instance of class 1 as 50 instances of class 0 you have to:
 
     Define a dictionary with your labels and their associated weights
