@@ -64,3 +64,22 @@ If you are talking about the regular case, where your network produces only one 
 
 EDIT: "treat every instance of class 1 as 50 instances of class 0" means that in your loss function you assign higher value to these instances.
 Hence, the loss becomes a weighted average, where the weight of each sample is specified by class_weight and its corresponding class.
+
+
+################ Hyperparameters check ###################
+* The first parameter to check is the Learning Rate
+* Second try another Optimizer
+* Third Number of neurons per layer
+* Type of activation function
+* batch size
+
++ Evaluation of the model after these m´with the function evaluate(): model.evaluate(x_test, y_test)
+
+############################### Building a Regression MLP Using Sequential API #####################
+* activation: 'relu'
+* loss: 'mean_squared_error'
+* optimizer: 'sgd'
+
+############################### Building Complex Models Using the Functional API #################### #page 402
+* This NN architecture connects  all or part of the inputs directly to the output layer. This architecture makes it possibl
+for NN to learn both deep patterns (using the deep path) and simple rules (through the short path)

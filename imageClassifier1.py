@@ -1,6 +1,7 @@
 
 import tensorflow as tf
 from tensorflow import keras
+import numpy as np
 
 # Using Kera to load the dataset
 fashion_mnist = keras.datasets.fashion_mnist
@@ -25,10 +26,12 @@ model.add(keras.layers.Dense(100, activation="relu"))
 model.add(keras.layers.Dense(10, activation="softmax"))
 model.summary()
 
+#Compiling the model
+model.compile(loss="sparse_categorical_crossentropy", optimizer="sgd", metrics=["accuracy"])
+
 history = model.fit(x_train, y_train, epochs=30, validation_data=(x_valid, y_valid))
 
 # Get All parameters of layer
-
 model.layers
 hidden_layer1 = model.layers[1]
 hidden_layer1.name
@@ -37,8 +40,20 @@ weights, biases = hidden_layer1.get_weights()
 weights.shape
 biases.shape
 
-#Compiling the model
-model.compile(loss="sparse_categorical_crossentropy", optimizer="sgd", metrics=["accuracy"])
+#Evaluate the Model
+model.evaluate(x_test, y_test)
+
+#Using the model to make predictions
+x_new = x_test[:3]
+y_proba = model.predict(x_new)
+y_proba = y_proba.round(2)
+print(y_proba)
+
+
+y_pred = model.predict(x_new)
+y_pred = np.argmax(y_pred, axis=1)
+print(y_pred)
+
 
 
 
