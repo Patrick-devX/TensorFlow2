@@ -62,3 +62,10 @@ history = model.fit([x_train_A, x_train_B], [y_train, y_train], epochs=20,
 total_loss, main_loss, aux_loss = model.evaluate([x_test_A, x_test_B], [y_test, y_test])
 
 y_pred_main, y_pred_aux = model.predict([x_new_A, x_new_B])
+
+
+############### Saving and Restoring a Model ################
+
+model.save('my_keras_model.h5')
+#Load model
+model = keras.models.load_model('my_kears_model.h5')

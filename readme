@@ -83,3 +83,58 @@ Hence, the loss becomes a weighted average, where the weight of each sample is s
 ############################### Building Complex Models Using the Functional API #################### #page 402
 * This NN architecture connects  all or part of the inputs directly to the output layer. This architecture makes it possibl
 for NN to learn both deep patterns (using the deep path) and simple rules (through the short path)
+
+########################## Using Callbacks ###################### 411
+    * ModelCheckpoint callback
+    * EarlyStopping callback
+* The ModelCheckpoint callback saves checkpoints of the model at regular intervals during training, by default at the end of each epoch:
+* The EarlyStopping Callback interrupt training when measures no progress on the validation set for a number of epochs ( definded by the patience argument)
+* You can combine both callbacks to save checkpoints of your model to yoid wasting time and resources
+* For extra controle, you can easily write your own custom callbacks
+
+######################################### Chapter 11. Training Deep Neural Networks ######################################################### 434
+####### Vanishing and exploding gradients problems ######### :
+* During Training the signal need to flow proprely in both directions: in the forward direction when making prediction, and
+in the reverse direction when backpropagating gradients. We dont want the signal to die out, nor do we want it to explode and saturate.
+* For the signal to flow properly, the variance of the outputs of each layer should be equal to the varaince of its inputs. It actually not possile
+to guarantee both unless the layer hast an equal number of inputs an neurons. But a good compronise that has proven to work very well in pactice:
+* The connection weights of each layer must be initialized randomly as described, where fanavg = (fanin + fanout)/2
+* By default Keras uses Glorot initialisation with a uniform distribution.
+
+    kernel_initializer="he_uniform"
+    kernel_initializer="he_normal"
+
+keras.layers.Dense(10, activation="relu", kernel_initializer="he_normal") #based fanin
+he_avg_init = keras.initializers.VarianceScaling(scale=2., mode='fan_avg',distribution='uniform')
+keras.layers.Dense(10, activation="sigmoid",kernel_initializer=he_avg_init)
+
+##################### Nosaturating Activation Functions ######################
+* ReLU activation function behaves good in DL, mostly because it does not saturate for positives values (and because it s fast to compute)
+Unfortunaly, the ReLU activation function is not perfect. It suffers from a problem known as the dying ReLUs:during training, some neurons effedtively "die,".
+In some cases, you may find that half of your network's neurons are dead, especially if you used a large learning Rate.
+
+* To solve this problem, you may want to use a variant of the ReLU function, such as the leaky ReLU.
+* SELU > ELU > leaky ReLU > ReLU > tanh > logistic
+* If you care a lot about runtime latency then you may prefer leaky ReLU with default valuy by Keras 0.3
+
+   keras.layers.LeakyReLU(alpha=0.2),
+
+###################### Batch Normalization ##################
+* Anthough using He initialization along with ELU ( or any variant of ReLU) can reduce the danger of the vanishing/exploding gradients probmens at the beginning of training.
+it doesn't guarantee that they won't come back during training.
+* The Batch Normalization (BN) addresses these problems: The technique consists of adding an operation in the model just before or after the activation function
+of each hidden layer. This operation simply zero-centers and normalizes each input, then scales and shifts the result using two new parameter vectors per layer:
+One for scaling one for shifting.
+* In many Cases, if you add a BN layer as the verry first layer of your NN, you do not need to standardize your training set (e.g. using StandardScaler)
+
+##################### Using TensorBoard for Visualization ########################
+#TensorBoard set up
+# 1 Create your directory where the logs have to be saved
+# 2 Create the tensorBoard callback and specifie the lod directory in it
+# 3 call the callback in the fit() method
+# 4 Got to the termonal and activate the virtual environement variable: .\venv\Scripts\activate
+# 5 Go back to the project directory myproject\mylog
+# 6 call: tensorboard --logdir=./my_logs --port=6006
+# 7 After this, just change some hyperparameter and train the function again. to see the new logs in Tensorboard, just refresh the webapp
+
+####################### Fine-Tuning neural Network Hyperparametres ###################
