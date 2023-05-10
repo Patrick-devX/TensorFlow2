@@ -141,3 +141,25 @@ One for scaling one for shifting.
 How do you know what combination of hyperparameters is the best for your tasks?
 * One option is to simply try many combinations of hyperparameters and see which one works best on the validation set ( or use k-fold cross validation)
 For example, we can use GridSearchCV or RandomizedSearchCV
+**** Number of Neurons per Hidden Layers****
++ Using same number of neurons in all hidden layers perform better
+**** Learning Rate *****
+* the learning rate ist the most important hyperparameter
+* start by 10-5 and gradually increasing it up to 10 in 500 iterations
+**** Optimizer *****
+**** Batch Size *****
+* General use of small batch site 2-32
+***** Activation Function *******
+* For Hidden lyaers RelU will be good
+* For the output layer, it really depends on your task
+**** Number of iterations *****
+##################################################################################################################################################
+##################################################################################################################################################
+
+############################################ CHAPTER 11 ########################################################
+
+########### Reusing Pretrained Layers ############ 453
+It is generally not a good idea to train very large DNN from scratch:
+instead, you should always try to find an existing neural network that
+accomplishes a similar task to the one your trying to tackle.
+* This technique is called transfer learning: It not only speed up training considerably, but also require significantly less training data.

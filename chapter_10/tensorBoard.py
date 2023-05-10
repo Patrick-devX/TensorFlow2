@@ -40,7 +40,7 @@ x_new_A = x_test_A[0:3]
 x_new_B = x_test_B[0:3]
 
 #defining a root log directory
-root_logdir = os.path.join(os.curdir, 'my_logs')
+root_logdir = os.path.join(os.curdir, '../my_logs')
 
 def get_run_logdir():
     """
