@@ -138,3 +138,6 @@ One for scaling one for shifting.
 # 7 After this, just change some hyperparameter and train the function again. to see the new logs in Tensorboard, just refresh the webapp
 
 ####################### Fine-Tuning neural Network Hyperparametres ###################
+How do you know what combination of hyperparameters is the best for your tasks?
+* One option is to simply try many combinations of hyperparameters and see which one works best on the validation set ( or use k-fold cross validation)
+For example, we can use GridSearchCV or RandomizedSearchCV
